@@ -12,9 +12,11 @@ while start_date <= end_date:
     date_str = start_date.strftime("%Y/%m/%d")
     url = f"{base_url}{date_str}/daily_json.js"
 
-    data = requests.get(url).json()
-    usd_rate = data['Valute']['USD']['Value']
-    exchange_rates.append((date_str, usd_rate))
+    response = requests.get(url)
+    if requests.get(url).status_code == 200:
+        data = requests.get(url).json()
+        usd_rate = data['Valute']['USD']['Value']
+        exchange_rates.append((date_str, usd_rate))
 
     start_date += pd.Timedelta(days=1)
 
