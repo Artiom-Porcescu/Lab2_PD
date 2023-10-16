@@ -21,13 +21,11 @@ def get_usd_exchange_rates(start_date, end_date):
 
     return exchange_rates
 
-start_date = pd.to_datetime("2023-09-01")
-end_date = pd.to_datetime("2023-09-30")
+start_date = pd.to_datetime(input("Введите дату в формате год-месяц-день "))
+end_date = pd.to_datetime(input("Введите дату в формате год-месяц-день "))
 
 usd_rates = get_usd_exchange_rates(start_date, end_date)
 
 df = pd.DataFrame(usd_rates, columns=["Date", "USD_Rate"])
 
 df.to_csv("dataset.csv", index=False)
-
-print("Данные сохранены в dataset.csv”)
